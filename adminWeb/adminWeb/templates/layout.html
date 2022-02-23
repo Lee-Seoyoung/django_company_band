@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>(주)Company Band</title>
+
+<script src="//use.fontawesome.com/53a7a821fe.js"></script>
+<link rel="stylesheet" href="{% static "bootstrap-4.6.1-dist\bootstrap-4.6.1-dist\css\bootstrap.css" %}" />
+<script src="{% static "jquery-3.6.0.min.js" %}"></script>
+<script src="{% static "jquery.form-3.51.0.min.js" %}"></script>
+<script src="{% static "bootstrap-4.6.1-dist\bootstrap-4.6.1-dist\js\bootstrap.min.js" %}"></script>
+</head>
+  <body>
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert={{message.tags}}">
+            {{message }}
+          </div>
+        {% endfor %}
+    {% endif %}
+    <div class="border-bottom mb-3">
+          <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 ">
+              <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/board">
+                Company Band
+              </a>
+              <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              {% comment %} <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> {% endcomment %}
+              <div class="navbar-nav">
+
+                <div class="nav-item text-nowrap">
+                  {{ user }}
+                  <a class="nav-link px-3" href="/accounts/signup"> 
+                    SignUp
+                  </a>
+                  <a class="nav-link px-3" href="/accounts/logout"> 
+                    Logout
+                  </a>
+                  <a class="nav-link px-3" href="{% url "profile_edit" %}">
+                    <img src="{{user.avartar_url}}" class="rounded-circle" style="width:24px; height: 24px;" />
+                  </a>
+                </div>
+              </div>
+          </header>
+        </div>
+
+    
+    {% block content %} {% endblock %}
+  </body>
+</html>
